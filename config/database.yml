@@ -1,0 +1,19 @@
+login: &login
+  adapter: mysql
+  encoding: utf8
+  username: root
+  password:
+  host: localhost
+  pool: 20
+
+development:
+  database: factual_local_us_db
+  <<: *login
+
+test:
+  database: factual_local_us_db
+  <<: *login
+
+production:
+  database: factual_local_us_db
+  <<: *login
