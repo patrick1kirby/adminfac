@@ -10,6 +10,10 @@ development:
   database: factual_local_us_db
   <<: *login
 
+staging:
+  database: factual_local_us_db
+  <<: *login
+
 test:
   database: factual_local_us_db
   <<: *login
