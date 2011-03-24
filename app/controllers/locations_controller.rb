@@ -6,7 +6,7 @@ class LocationsController < ApplicationController
     list.columns.exclude :website, :fax
     list.sorting = {:name => 'ASC'}
     config.actions = [:nested, :list, :show, :field_search]
-    config.field_search.text_search = false
+    config.field_search.text_search = :start
 
 
     config.actions.add :export
