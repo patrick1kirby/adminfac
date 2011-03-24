@@ -1,9 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :locations
-
-  map.resources :locations
-
-  map.resources :locations
+  map.resources :locations, :active_scaffold => true
 
   # The priority is based upon order of creation: first created -> highest priority.
 
