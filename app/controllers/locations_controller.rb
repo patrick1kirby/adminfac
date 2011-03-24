@@ -5,8 +5,8 @@ class LocationsController < ApplicationController
     config.columns = [:uuid, :name, :address, :locality, :region, :postcode, :tel, :fax, :category, :website, :latitude, :longitude]
     list.columns.exclude :website, :fax
     list.sorting = {:name => 'ASC'}
-    #config.actions = [:nested, :list, :show, :field_search]
-    #config.field_search.text_search = :start
+    config.actions = [:nested, :list, :show, :field_search]
+    config.field_search.text_search = false
 
 
     config.actions.add :export

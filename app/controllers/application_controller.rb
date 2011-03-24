@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   ActiveScaffold.set_defaults do |conf|
     conf.ignore_columns.add [:created_at, :updated_at, :lock_version]
     #config.list.results_per_page = 100
-    #conf.actions.exclude :search
+    conf.actions.exclude :search
     #conf.actions.add :advanced_search
   end
 end
