@@ -1,0 +1,74 @@
+This works with Rails 2.3 and the rails-2.3 branch of ActiveScaffold.
+
+Enhancements:
+The following exports are supported:
+Excel
+Enhanced XML To File (uses XSL Stylesheet)
+Enhanced XML
+Raw XML
+CSV
+Stylesheet (XSL stylesheet. Used by Enhanced XML To File) 
+
+Raw XML is a rails "to_xml" which dumps the db/model data i.e. just the ids for any associations. 
+All others export what you see in the list i.e. real association data. 
+For plural associations, all records are output - not just the first 3 like you see in an AS list. 
+
+Gems required:
+fastercsv
+surpass (for Excel export)
+
+Features from http://code.google.com/p/activescaffoldexport/wiki/Features
+
+Introduction
+
+Active Scaffold plugin with some configuration options and a FasterCSV implementation (which can be easily overridden)
+Details
+
+Actual CSV export implementation can be easily overridden via a template override
+
+   1. Built in CSV export implementation uses FasterCSV (must be installed via GEM)
+   2. Several customization options available at both global and controller config layer including: 
+
+    * show_form - skip customization form and just automatically export from action link
+    * allow_full_download - allow user to only export the current page or all AR items
+    * force_quotes - Always wrap all fields in quotes (using FCSV feature)
+    * default_full_download - Whether page or full download is the default option in show_export form
+    * default_delimiter - defaults to , (different from the prior code's default of ;)
+    * default_skip_header - default for the omit header form option
+    * default_deselected_columns - list of columns that the user can export but aren't selected by default 
+
+Usage
+
+Add the export action to your controller:
+
+  active_scaffold :people do |c|
+    c.actions.add :export
+    c.export.columns = [ :id, :name, :birth_date ]
+    c.export.default_deselected_columns = [ :birth_date ]
+    c.export.default_delimiter = ';'
+    c.export.force_quotes = true
+  end
+  
+or for all controllers:
+
+class ApplicationController < ActionController::Base
+  ActiveScaffold.set_defaults do |config|
+    config.actions.add :export
+  end
+end
+
+The output filename is controller_date.format e.g. people_2010-04-14.csv
+You can customize this by overriding #export_file (everything except stylesheets) or #export_file_name(:format) in your controller   
+e.g.
+  def export_file
+    "output"
+  end
+would give you output.csv, output.xls, etc (but keep the stylesheet as people.xsl)
+
+You can override the background color in the stylesheet by overriding #bgcolor
+e.g
+  def bgcolor
+    "#AADDAA"
+  end
+
+I have renamed the old activescaffoldexport plugin to follow the same pattern as the other ActiveScaffold related plugins.

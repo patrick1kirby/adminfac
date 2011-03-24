@@ -1,0 +1,43 @@
+<% if @export_library == :fastercsv -%><%
+  require 'fastercsv'
+  fcsv_options = {
+    :row_sep => "\n",
+    :col_sep => params[:delimiter],
+    :force_quotes => @export_config.force_quotes,
+    :headers => @export_columns.collect { |column| format_export_column_header_name(column) }
+  }
+ 
+  data = FasterCSV.generate(fcsv_options) do |csv|
+    csv << fcsv_options[:headers] unless params[:skip_header]
+    @records.each do |record|
+      csv << @export_columns.collect { |column|
+        get_export_column_value(record, column)
+      }
+    end
+  end
+-%>
+<% elsif @export_library == :surpass -%><%
+  require 'surpass'
+  book = Workbook.new
+  sheet = book.add_sheet
+  
+  header_style = StyleFormat.new(:font_bold => true)
+  row = 0
+  
+  unless params[:skip_header]
+      @export_columns.each_with_index do |c, j|
+          sheet.write(row, j, c.label, header_style)
+      end
+      row = 1
+  end
+  
+  @records.each_with_index do |r, i|
+      @export_columns.each_with_index do |c, j|
+          value = get_export_column_value(r, c)
+          value = value.to_s if value.is_a?(Array) # TODO find out why we are getting empty arrays here sometimes
+          sheet.write(i+row, j, value, true) # passing true for style will autoformat data
+      end
+  end
+  
+  data = book.data
+-%><% end -%><%= data -%>
