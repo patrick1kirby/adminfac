@@ -43,6 +43,11 @@ class AdminData::SearchController  < AdminData::BaseController
     @order = default_order
 
     respond_to do |format|
+      format.csv {
+        if params[:format] == 'csv'
+          handle_advance_search_action_type_export
+        end
+      }
       format.html { render }
       format.js {
 
@@ -106,6 +111,17 @@ class AdminData::SearchController  < AdminData::BaseController
       group.each {|record| record.destroy }
     end
     @success_message = "#{count} #{AdminData::Util.pluralize(count, 'record')} destroyed"
+  end
+
+  def handle_advance_search_action_type_export
+    @outfile = "export_#{@klass.name.underscore}_" + Time.now.strftime("%m-%d-%Y") + ".csv"
+    @model = @klass.send(:new)
+    csv_data = @model.to_csv(:conditions => @cond)
+
+    send_data csv_data,
+      :type => 'text/plain; charset=iso-8859-1; header=present',
+      :disposition=>'attachment',
+      :filename => @outfile
   end
 
   def default_order

@@ -12,6 +12,10 @@
       <span> 
         <%= link_to 'Destroy All', '#', :id => 'advance_search_destroy_all' %>
       </span>
+      |
+      <span>
+        <%= link_to "Export to CSV", request.parameters.merge({:format => :csv})%>
+      </span>
     </div>
   <% end %>
 

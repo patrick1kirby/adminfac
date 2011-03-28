@@ -3,11 +3,15 @@ class LocationsController < ApplicationController
   active_scaffold :locations do |config|
     config.label = "Locations"
     config.columns = [:uuid, :name, :address, :locality, :region, :postcode, :tel, :fax, :category, :website, :latitude, :longitude]
+    config.columns[:name].search_sql = 'name'
+    config.search.columns << :name
+
+
     list.columns.exclude :website, :fax
     list.sorting = {:name => 'ASC'}
     config.actions = [:nested, :list, :show, :field_search]
-    config.field_search.text_search = :start
 
+    #config.field_search.text_search = false
 
     config.actions.add :export
     config.export.columns = [ :name, :address, :locality, :region, :postcode, :tel, :fax, :category, :website, :latitude, :longitude ]
@@ -16,4 +20,5 @@ class LocationsController < ApplicationController
     config.export.force_quotes = true
 
   end
+
 end
