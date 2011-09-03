@@ -2,34 +2,44 @@
 
 <table>
   <tr>
-    <th>Uuid</th>
+    <th>Factual Id</th>
     <th>Name</th>
     <th>Address</th>
+    <th>Address Extended</th>
+    <th>PO Box</th>
     <th>Locality</th>
     <th>Region</th>
+    <th>Country</th>
     <th>Postcode</th>
     <th>Tel</th>
     <th>Fax</th>
     <th>Category</th>
     <th>Website</th>
+    <th>Email</th>
     <th>Latitude</th>
     <th>Longitude</th>
+    <th>Status</th>
   </tr>
 
 <% @locations.each do |location| %>
   <tr>
-    <td><%=h location.uuid %></td>
+    <td><%=h location.factual_id %></td>
     <td><%=h location.name %></td>
     <td><%=h location.address %></td>
+    <td><%=h location.address_extended %></td>
+    <td><%=h location.po_box %></td>
     <td><%=h location.locality %></td>
     <td><%=h location.region %></td>
+    <td><%=h location.country %></td>
     <td><%=h location.postcode %></td>
     <td><%=h location.tel %></td>
     <td><%=h location.fax %></td>
     <td><%=h location.category %></td>
     <td><%=h location.website %></td>
+    <td><%=h location.email %></td>
     <td><%=h location.latitude %></td>
     <td><%=h location.longitude %></td>
+    <td><%=h location.status %></td>
     <td><%= link_to 'Show', location %></td>
     <td><%= link_to 'Edit', edit_location_path(location) %></td>
     <td><%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %></td>

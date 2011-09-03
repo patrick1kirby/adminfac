@@ -4,8 +4,8 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :uuid %><br />
-    <%= f.text_field :uuid %>
+    <%= f.label :factual_id %><br />
+    <%= f.text_field :factual_id %>
   </p>
   <p>
     <%= f.label :name %><br />
@@ -16,12 +16,24 @@
     <%= f.text_field :address %>
   </p>
   <p>
+    <%= f.label :address_extended %><br />
+    <%= f.text_field :address_extended %>
+  </p>
+  <p>
+    <%= f.label :po_box %><br />
+    <%= f.text_field :po_box %>
+  </p>
+  <p>
     <%= f.label :locality %><br />
     <%= f.text_field :locality %>
   </p>
   <p>
     <%= f.label :region %><br />
     <%= f.text_field :region %>
+  </p>
+  <p>
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
   </p>
   <p>
     <%= f.label :postcode %><br />
@@ -44,12 +56,20 @@
     <%= f.text_field :website %>
   </p>
   <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
     <%= f.label :latitude %><br />
     <%= f.text_field :latitude %>
   </p>
   <p>
     <%= f.label :longitude %><br />
     <%= f.text_field :longitude %>
+  </p>
+  <p>
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
   </p>
   <p>
     <%= f.submit 'Update' %>

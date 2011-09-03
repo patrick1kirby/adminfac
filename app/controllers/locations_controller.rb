@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
 
   active_scaffold :locations do |config|
     config.label = "Locations"
-    config.columns = [:uuid, :name, :address, :locality, :region, :postcode, :tel, :fax, :category, :website, :latitude, :longitude]
+    config.columns = [:factual_id, :name, :address, :address_extended, :po_box, :locality, :region, :country, :postcode, :tel, :fax, :category, :website, :email, :latitude, :longitude, :status]
     config.columns[:name].search_sql = 'name'
     config.search.columns << :name
 

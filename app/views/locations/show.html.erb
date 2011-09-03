@@ -1,6 +1,6 @@
 <p>
-  <b>Uuid:</b>
-  <%=h @location.uuid %>
+  <b>Factual_id:</b>
+  <%=h @location.factual_id %>
 </p>
 
 <p>
@@ -14,6 +14,16 @@
 </p>
 
 <p>
+  <b>Address Extended:</b>
+  <%=h @location.address_extended %>
+</p>
+
+<p>
+  <b>PO Box:</b>
+  <%=h @location.po_box %>
+</p>
+
+<p>
   <b>Locality:</b>
   <%=h @location.locality %>
 </p>
@@ -21,6 +31,11 @@
 <p>
   <b>Region:</b>
   <%=h @location.region %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%=h @location.country %>
 </p>
 
 <p>
@@ -49,6 +64,11 @@
 </p>
 
 <p>
+  <b>Email:</b>
+  <%=h @location.email %>
+</p>
+
+<p>
   <b>Latitude:</b>
   <%=h @location.latitude %>
 </p>
@@ -58,6 +78,10 @@
   <%=h @location.longitude %>
 </p>
 
+<p>
+  <b>Status:</b>
+  <%=h @location.status %>
+</p>
 
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>
